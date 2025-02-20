@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RND.Tools.Core\RND.Tools.Core.csproj" />
+  </ItemGroup>
+</Project>

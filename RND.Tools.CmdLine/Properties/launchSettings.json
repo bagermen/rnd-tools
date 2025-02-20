@@ -1,0 +1,46 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      },
+      "distributionName": ""
+    },
+    "connection main": {
+      "commandName": "Project",
+      "commandLineArgs": "app --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll connection db",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "connection wc": {
+      "commandName": "Project",
+      "commandLineArgs": "wc --assembly-path C:\\Users\\roman\\www\\test\\WorkspaceConsole\\BPMSoft.Tools.WorkspaceConsole.dll connection db",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "design-mode": {
+      "commandName": "Project",
+      "commandLineArgs": "app --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll design-mode",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "setting": {
+      "commandName": "Project",
+      "commandLineArgs": "app --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll setting LoadAssemblyFromByteArray",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "redis": {
+      "commandName": "Project",
+      "commandLineArgs": "redis --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll --key 111 clear",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

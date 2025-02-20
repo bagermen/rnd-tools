@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="System.CommandLine.Hosting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RND.Tools.Core\RND.Tools.Core.csproj" />
+    <ProjectReference Include="..\RND.Tools.Infrastructure\RND.Tools.Infrastructure.csproj" />
+    <ProjectReference Include="..\RND.Tools.UseCases\RND.Tools.UseCases.csproj" />
+  </ItemGroup>
+
+  <Choose>
+    <When Condition=" '$(Configuration)'=='Debug' ">
+      <ItemGroup>
+        <Content Include="appsettings.Development.json">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <DependentUpon>appsettings.json</DependentUpon>
+        </Content>
+      </ItemGroup>
+    </When>
+  </Choose>
+</Project>
