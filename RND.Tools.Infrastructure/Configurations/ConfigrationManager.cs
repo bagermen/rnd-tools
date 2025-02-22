@@ -1,22 +1,27 @@
+using RND.Tools.Core.Enums;
 using RND.Tools.Core.Interfaces;
+using RND.Tools.Infrastructure.Configurations.Factories;
 using System.Configuration;
 using System.Runtime.Loader;
 using SysConfiguration = System.Configuration.Configuration;
 
 namespace RND.Tools.Infrastructure.Configurations;
 
-public class ConfigrationManager : IConfigrationManager, IDisposable
+internal class ConfigrationManager : IConfigrationManager, IDisposable
 {
 	private readonly SysConfiguration config;
 	private readonly AssemblyLoadContext.ContextualReflectionScope contextualReflectionScope;
+	private readonly IEnumerable<IConfigurationFactory> configurationFactories;
 
-	public ConfigrationManager(ICmdLineOptions cmdOptions)
+	internal ConfigrationManager(
+		ICmdLineOptions cmdOptions,
+		ConfigurationLoadContext alc,
+		IEnumerable<IConfigurationFactory> configurationFactories
+	)
 	{
-		var assemblyPath = cmdOptions.AssemblyPath;
-		var alc = new ConfigurationLoadContext(assemblyPath, true);
-
+		this.configurationFactories = configurationFactories;
 		contextualReflectionScope = alc.EnterContextualReflection();
-		config = ConfigurationManager.OpenExeConfiguration(assemblyPath);
+		config = ConfigurationManager.OpenExeConfiguration(cmdOptions.AssemblyPath);
 	}
 	public string? GetConnectionString(string key)
 	{
@@ -119,10 +124,52 @@ public class ConfigrationManager : IConfigrationManager, IDisposable
 		ConfigurationManager.RefreshSection("bpmsoft");
 	}
 
-	public void Dispose()
+	public Type? GetDBExecutorType()
 	{
-		var alc = AssemblyLoadContext.CurrentContextualReflectionContext;
-		contextualReflectionScope.Dispose();
-		alc?.Unload();
+		var dbGeneral = config.GetSection("bpmsoft/db/general");
+
+		return dbGeneral?.GetType().GetProperty("ExecutorType")!.GetValue(dbGeneral) as Type;
 	}
+	public string? GetDBConnectionStringName()
+	{
+		var dbGeneral = config.GetSection("bpmsoft/db/general");
+
+		return dbGeneral?.GetType().GetProperty("ConnectionStringName")!.GetValue(dbGeneral) as string;
+	}
+
+	public void SetDbConnection(DbType dbType)
+	{
+		var dbSection = dbType switch
+		{
+			DbType.PostgreSQL => configurationFactories.OfType<PostgreSQLConnectionFactory>().First().CreateSection(),
+			DbType.SQLServer => configurationFactories.OfType<MSSQLConnectionFactory>().First().CreateSection(),
+			_ => throw new NotImplementedException()
+		};
+
+		RemoveSection("bpmsoft/db", "general");
+		AddSection("bpmsoft/db", "general", dbSection);
+	}
+	private void AddSection(string sectionGroupName, string sectionName, ConfigurationSection section)
+	{
+		var sectionGroup = config.GetSectionGroup(sectionGroupName);
+		if (sectionGroup != null && sectionGroup.Sections[sectionName] == null)
+		{
+			sectionGroup.Sections.Add(sectionName, section);
+			config.Save(ConfigurationSaveMode.Modified);
+			ConfigurationManager.RefreshSection(sectionGroupName);
+		}
+	}
+
+	private void RemoveSection(string sectionGroupName, string sectionName)
+	{
+		var sectionGroup = config.GetSectionGroup(sectionGroupName);
+		if (sectionGroup != null && sectionGroup.Sections[sectionName] != null)
+		{
+			sectionGroup.Sections.Remove(sectionName);
+			config.Save(ConfigurationSaveMode.Modified);
+			ConfigurationManager.RefreshSection(sectionGroupName);
+		}
+	}
+
+	public void Dispose() => contextualReflectionScope.Dispose();
 }

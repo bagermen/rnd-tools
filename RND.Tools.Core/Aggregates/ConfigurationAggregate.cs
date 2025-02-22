@@ -1,8 +1,12 @@
+using RND.Tools.Core.Enums;
 using RND.Tools.Core.Interfaces;
 
 namespace RND.Tools.Core.Aggregates;
 
-public class ConfigurationAggregate(IConfigrationManager configrationManager) : IAggregateRoot
+public class ConfigurationAggregate(
+	IConfigrationManager configrationManager,
+	IConfigurationTypeProvider configurationTypeProvider
+	) : IAggregateRoot
 {
 	public string? GetConnectionString(string key)
 	{
@@ -32,5 +36,19 @@ public class ConfigurationAggregate(IConfigrationManager configrationManager) : 
 	{
 		configrationManager.SetFileDesignMode(value.ToString());
 		configrationManager.SetAppSetting("UseStaticFileContent", (!value).ToString());
+	}
+
+	public DbType? GetDbType()
+	{
+		return configrationManager.GetDBExecutorType() switch
+		{
+			var v when ReferenceEquals(v, configurationTypeProvider.PostgreSqlExecutorType) => DbType.PostgreSQL,
+			var v when ReferenceEquals(v, configurationTypeProvider.MSSqlExecutorType) => DbType.SQLServer,
+			_ => null
+		};
+	}
+
+	public void SetDbType(DbType dbType)
+	{
 	}
 }

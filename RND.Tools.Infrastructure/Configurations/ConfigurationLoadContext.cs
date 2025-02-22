@@ -3,7 +3,7 @@ using System.Runtime.Loader;
 
 namespace RND.Tools.Infrastructure.Configurations;
 
-internal class ConfigurationLoadContext : AssemblyLoadContext
+public class ConfigurationLoadContext : AssemblyLoadContext, IDisposable
 {
 	private AssemblyDependencyResolver resolver;
 
@@ -11,6 +11,8 @@ internal class ConfigurationLoadContext : AssemblyLoadContext
 	{
 		resolver = new AssemblyDependencyResolver(dllPath);
 	}
+
+	public void Dispose() => Unload();
 
 	protected override Assembly? Load(AssemblyName assemblyName)
 	{
