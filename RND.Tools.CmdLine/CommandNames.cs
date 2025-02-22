@@ -7,5 +7,6 @@ internal static class CommandNames
 	public static string Connection = "connection";
 	public static string DesignMode = "design-mode";
 	public static string Db = "db";
+	public static string DbType = "type";
 	public static string Redis = "redis";
 }

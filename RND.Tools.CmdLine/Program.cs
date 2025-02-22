@@ -26,6 +26,7 @@ wc --assembly-path ./appsettings.dll connection key value
 // second version
 db --assembly-path ./appsettings.dll --key key load /backup
 db --assembly-path ./appsettings.dll --key key backup ./backup
+db --assembly-path ./appsettings.dll type value
 
 redis --assembly-path ./appsettings.dll --key key clear
 */
@@ -66,6 +67,7 @@ await commandBuilder
 					.Bind(configurationRoot.GetSection(CmdLineSettings.CmdLine));
 
 			})
+			.UseCommandHandler<DbTypeCommand, DbTypeHandler>()
 			.UseCommandHandler<SettingCommand, SettingHandler>()
 			.UseCommandHandler<СonnectionCommand, ConnectionsHandler>()
 			.UseCommandHandler<DesignModeCommand, DesignModeHandler>();
@@ -79,4 +81,5 @@ void CreateCommand(Command command)
 	command.Description = "Build management";
 	command.Add(new AppCommand());
 	command.Add(new WCCommand());
+	command.Add(new DbCommand());
 }

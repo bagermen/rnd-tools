@@ -41,6 +41,27 @@
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
+    },
+    "db type": {
+      "commandName": "Project",
+      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "db type postgresql": {
+      "commandName": "Project",
+      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type postgresql",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "db type help": {
+      "commandName": "Project",
+      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type --help",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
     }
   }
 }
