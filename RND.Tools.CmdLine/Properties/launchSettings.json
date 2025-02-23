@@ -56,6 +56,13 @@
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
+    "db type sqlserver": {
+      "commandName": "Project",
+      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type sqlserver",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
     "db type help": {
       "commandName": "Project",
       "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type --help",

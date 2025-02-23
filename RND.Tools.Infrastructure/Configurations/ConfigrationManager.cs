@@ -2,6 +2,7 @@ using RND.Tools.Core.Enums;
 using RND.Tools.Core.Interfaces;
 using RND.Tools.Infrastructure.Configurations.Factories;
 using System.Configuration;
+using System.Reflection;
 using System.Runtime.Loader;
 using SysConfiguration = System.Configuration.Configuration;
 
@@ -137,7 +138,7 @@ internal class ConfigrationManager : IConfigrationManager, IDisposable
 		return dbGeneral?.GetType().GetProperty("ConnectionStringName")!.GetValue(dbGeneral) as string;
 	}
 
-	public void SetDbConnection(DbType dbType)
+	public void SetDbConnection(string connectionStringName, DbType dbType)
 	{
 		var dbSection = dbType switch
 		{
@@ -146,9 +147,58 @@ internal class ConfigrationManager : IConfigrationManager, IDisposable
 			_ => throw new NotImplementedException()
 		};
 
+		dbSection.GetType().GetProperty("ConnectionStringName")!.SetValue(dbSection, connectionStringName);
 		RemoveSection("bpmsoft/db", "general");
 		AddSection("bpmsoft/db", "general", dbSection);
 	}
+
+	public void UpdateQuartzToDb(string connectionStringName, DbType dbType)
+	{
+		var quartzSectionName = "quartzConfig";
+		var sectionGroup = config.GetSection(quartzSectionName);
+		var quartzElements = (ConfigurationElementCollection) sectionGroup.GetType().GetProperty("Schedulers")!.GetValue(sectionGroup)!;
+
+		foreach (ConfigurationElement quartzElement in quartzElements)
+		{
+			var props = (ConfigurationElementCollection) quartzElement.GetType().GetProperty("Props")!.GetValue(quartzElement)!;
+
+			foreach (ConfigurationElement prop in props)
+			{
+				var propType = prop.GetType();
+				var propName = (string) propType.GetProperty("Key")!.GetValue(prop)!;
+
+				if (propName == "quartz.dataSource.SchedulerDb.connectionStringName")
+				{
+					SetQuartzPropElementProp(prop, "value", connectionStringName);
+				}
+				else if (propName == "quartz.dataSource.SchedulerDb.provider")
+				{
+					SetQuartzPropElementProp(prop, "value", dbType == DbType.PostgreSQL ? "Npgsql" : "SqlServer");
+				}
+				else if (propName == "quartz.jobStore.driverDelegateType")
+				{
+					SetQuartzPropElementProp(prop, "value", dbType == DbType.PostgreSQL
+						? "Quartz.Impl.AdoJobStore.PostgreSQLDelegate, Quartz"
+						: "Quartz.Impl.AdoJobStore.SqlServerDelegate, Quartz"
+					);
+				}
+			}
+		}
+		config.Save(ConfigurationSaveMode.Modified);
+		ConfigurationManager.RefreshSection(quartzSectionName);
+	}
+	private void SetQuartzPropElementProp(ConfigurationElement element, string propertyName, object value)
+	{
+		var setPropertyValueMethod = element.GetType().GetMethod("SetPropertyValue", BindingFlags.Instance | BindingFlags.NonPublic);
+		var propertiesProperty = element.GetType().GetProperty("Properties", BindingFlags.Instance | BindingFlags.NonPublic)!;
+		var properties = propertiesProperty.GetValue(element) as ConfigurationPropertyCollection;
+
+		if (properties != null && properties.Contains(propertyName))
+		{
+			setPropertyValueMethod!.Invoke(element, [properties[propertyName], value, false]);
+		}
+	}
+
 	private void AddSection(string sectionGroupName, string sectionName, ConfigurationSection section)
 	{
 		var sectionGroup = config.GetSectionGroup(sectionGroupName);

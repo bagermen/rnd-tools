@@ -8,7 +8,6 @@ public class GetDbTypeHandler(ConfigurationAggregate configuration) : IRequestHa
 {
 	public Task<DbTypeEnum?> Handle(GetDbTypeRequest request, CancellationToken cancellationToken)
 	{
-		var dbType = configuration.GetDbType();
-		return Task.FromResult<DbTypeEnum?>(dbType);
+		return Task.FromResult(configuration.GetDbType());
 	}
 }

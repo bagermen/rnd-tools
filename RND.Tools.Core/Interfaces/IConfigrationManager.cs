@@ -13,6 +13,7 @@ public interface IConfigrationManager
 	void RemoveConnectionString(string key);
 	void SetAppSetting(string key, string value);
 	void SetConnectionString(string key, string value);
-	void SetDbConnection(DbType dbType);
+	void SetDbConnection(string connectionStringName, DbType dbType);
 	void SetFileDesignMode(string value);
+	void UpdateQuartzToDb(string connectionStringName, DbType dbType);
 }

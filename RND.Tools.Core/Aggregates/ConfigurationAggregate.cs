@@ -50,5 +50,8 @@ public class ConfigurationAggregate(
 
 	public void SetDbType(DbType dbType)
 	{
+		var connectionStringName = configrationManager.GetDBConnectionStringName() ?? "db";
+		configrationManager.SetDbConnection(connectionStringName, dbType);
+		configrationManager.UpdateQuartzToDb(connectionStringName, dbType);
 	}
 }
