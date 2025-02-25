@@ -9,28 +9,28 @@
     },
     "connection main": {
       "commandName": "Project",
-      "commandLineArgs": "app --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll connection db",
+      "commandLineArgs": "config --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll connection db",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
     "connection wc": {
       "commandName": "Project",
-      "commandLineArgs": "wc --assembly-path C:\\Users\\roman\\www\\test\\WorkspaceConsole\\BPMSoft.Tools.WorkspaceConsole.dll connection db",
+      "commandLineArgs": "config --assembly-path C:\\Users\\roman\\www\\test\\WorkspaceConsole\\BPMSoft.Tools.WorkspaceConsole.dll connection db",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
     "design-mode": {
       "commandName": "Project",
-      "commandLineArgs": "app --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll design-mode",
+      "commandLineArgs": "config --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll design-mode",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
     "setting": {
       "commandName": "Project",
-      "commandLineArgs": "app --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll setting LoadAssemblyFromByteArray",
+      "commandLineArgs": "config --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll setting LoadAssemblyFromByteArray",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
@@ -42,30 +42,30 @@
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
-    "db type": {
+    "config db-type": {
       "commandName": "Project",
-      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type",
+      "commandLineArgs": "config --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll db-type",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
-    "db type postgresql": {
+    "config db-type postgresql": {
       "commandName": "Project",
-      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type postgresql",
+      "commandLineArgs": "config --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll db-type postgresql",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
-    "db type sqlserver": {
+    "config db-type sqlserver": {
       "commandName": "Project",
-      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type sqlserver",
+      "commandLineArgs": "config --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll db-type sqlserver",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
-    "db type help": {
+    "config db-type help": {
       "commandName": "Project",
-      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll type --help",
+      "commandLineArgs": "config --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll db-type --help",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

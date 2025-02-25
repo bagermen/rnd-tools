@@ -16,17 +16,14 @@ using RND.Tools.CmdLine.Commands.Handlers;
 using RND.Tools.Core.Extensions;
 
 /**
-app --assembly-path ./appsettings.dll setting key value
-app --assembly-path ./appsettings.dll connection key value
-app --assembly-path ./appsettings.dll design-mode value
-
-wc --assembly-path ./appsettings.dll setting key value
-wc --assembly-path ./appsettings.dll connection key value
+config --assembly-path ./appsettings.dll setting key value
+config --assembly-path ./appsettings.dll connection key value
+config --assembly-path ./appsettings.dll design-mode value
+config --assembly-path ./appsettings.dll db-type value
 
 // second version
-db --assembly-path ./appsettings.dll --key key load /backup
-db --assembly-path ./appsettings.dll --key key backup ./backup
-db --assembly-path ./appsettings.dll type value
+db --assembly-path ./appsettings.dll load /backup
+db --assembly-path ./appsettings.dll backup ./backup
 
 redis --assembly-path ./appsettings.dll --key key clear
 */
@@ -79,7 +76,5 @@ await commandBuilder
 void CreateCommand(Command command)
 {
 	command.Description = "Build management";
-	command.Add(new AppCommand());
-	command.Add(new WCCommand());
-	command.Add(new DbCommand());
+	command.Add(new ConfigCommand());
 }

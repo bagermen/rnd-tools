@@ -3,15 +3,17 @@ using System.CommandLine;
 
 namespace RND.Tools.CmdLine.Commands;
 
-internal class WCCommand : Command
+internal class ConfigCommand : Command
 {
-	public WCCommand() : base(
-		name: CommandNames.WCConfig,
-		description: "WC configuration management"
+	public ConfigCommand() : base(
+		name: CommandNames.Config,
+		description: "Application configuration management"
 		)
 	{
 		Add(new SettingCommand());
 		Add(new СonnectionCommand());
+		Add(new DesignModeCommand());
+		Add(new DbTypeCommand());
 
 		AddGlobalOption(new AssemblyPathOption
 		{
