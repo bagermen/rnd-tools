@@ -21,8 +21,10 @@ config --assembly-path ./appsettings.dll connection key value
 config --assembly-path ./appsettings.dll design-mode value
 config --assembly-path ./appsettings.dll db-type value
 
+db --assembly-path ./appsettings.dll load /backup (postgres)
+
 // second version
-db --assembly-path ./appsettings.dll load /backup
+db --assembly-path ./appsettings.dll load /backup (mssql)
 db --assembly-path ./appsettings.dll backup ./backup
 
 redis --assembly-path ./appsettings.dll --key key clear
@@ -64,6 +66,7 @@ await commandBuilder
 					.Bind(configurationRoot.GetSection(CmdLineSettings.CmdLine));
 
 			})
+			.UseCommandHandler<DbLoadCommand, DbLoadHandler>()
 			.UseCommandHandler<DbTypeCommand, DbTypeHandler>()
 			.UseCommandHandler<SettingCommand, SettingHandler>()
 			.UseCommandHandler<СonnectionCommand, ConnectionsHandler>()
@@ -77,4 +80,5 @@ void CreateCommand(Command command)
 {
 	command.Description = "Build management";
 	command.Add(new ConfigCommand());
+	command.Add(new DbCommand());
 }

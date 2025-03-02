@@ -2,6 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 using RND.Tools.Core.Interfaces;
 using RND.Tools.Infrastructure.Configurations;
 using RND.Tools.Infrastructure.Configurations.Factories;
+using RND.Tools.Infrastructure.Db;
+using RND.Tools.Infrastructure.Db.ConnectionStrings;
+using DbTypeEnum = RND.Tools.Core.Enums.DbType;
 
 namespace RND.Tools.Infrastructure.Services.Extensions
 {
@@ -26,6 +29,8 @@ namespace RND.Tools.Infrastructure.Services.Extensions
 
 				return new ConfigrationManager(cmdOptions, alc,	configurationFactories);
 			});
+			services.AddKeyedTransient<IConnectionStringGetter, PostgresConnectionStringGetter>(DbTypeEnum.PostgreSQL);
+			services.AddKeyedTransient<IDbLoader, PostgresDbLoader>(DbTypeEnum.PostgreSQL);
 
 			return services;
 		}

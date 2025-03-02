@@ -10,6 +10,7 @@ internal class DbCommand : Command
 		description: "Database management"
 		)
 	{
+		Add(new DbLoadCommand());
 		AddGlobalOption(new AssemblyPathOption
 		{
 			IsRequired = true,

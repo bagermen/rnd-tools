@@ -131,7 +131,7 @@ internal class ConfigrationManager : IConfigrationManager, IDisposable
 
 		return dbGeneral?.GetType().GetProperty("ExecutorType")!.GetValue(dbGeneral) as Type;
 	}
-	public string? GetDBConnectionStringName()
+	public string? GetDBConnectionKey()
 	{
 		var dbGeneral = config.GetSection("bpmsoft/db/general");
 

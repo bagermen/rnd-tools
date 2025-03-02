@@ -6,7 +6,7 @@ public interface IConfigrationManager
 {
 	string? GetAppSetting(string key);
 	string? GetConnectionString(string key);
-	string? GetDBConnectionStringName();
+	string? GetDBConnectionKey();
 	Type? GetDBExecutorType();
 	string? GetFileDesignMode();
 	void RemoveAppSetting(string key);

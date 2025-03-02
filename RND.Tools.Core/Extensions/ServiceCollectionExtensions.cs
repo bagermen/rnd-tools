@@ -8,6 +8,7 @@ namespace RND.Tools.Core.Extensions
 		public static IServiceCollection AddCoreServices(this IServiceCollection services)
 		{
 			services.AddScoped<ConfigurationAggregate>();
+			services.AddScoped<DbAggregate>();
 			return services;
 		}
 	}
