@@ -17,7 +17,7 @@ internal class ConfigCommand : Command
 
 		AddGlobalOption(new AssemblyPathOption
 		{
-			IsRequired = true,
+			IsRequired = false,
 		});
 	}
 }

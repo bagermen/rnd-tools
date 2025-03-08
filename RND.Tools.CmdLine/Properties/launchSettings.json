@@ -80,6 +80,14 @@
         "PGPORT": "55432",
         "DOTNET_ENVIRONMENT": "Development"
       }
-    }
+    },
+    "auto assembly": {
+      "commandName": "Project",
+      "commandLineArgs": "config setting LoadAssemblyFromByteArray",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "BPMTOOL_CmdLine__AssemblyPath": "C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll"
+      }
+    },
   }
 }

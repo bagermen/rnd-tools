@@ -13,7 +13,7 @@ internal class DbCommand : Command
 		Add(new DbLoadCommand());
 		AddGlobalOption(new AssemblyPathOption
 		{
-			IsRequired = true,
+			IsRequired = false,
 		});
 	}
 }

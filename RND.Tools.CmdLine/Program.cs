@@ -16,6 +16,9 @@ using RND.Tools.CmdLine.Commands.Handlers;
 using RND.Tools.Core.Extensions;
 
 /**
+environment variables:
+BPMTOOL_CmdLine__AssemblyPath
+
 config --assembly-path ./appsettings.dll setting key value
 config --assembly-path ./appsettings.dll connection key value
 config --assembly-path ./appsettings.dll design-mode value
@@ -42,6 +45,7 @@ await commandBuilder
 			var configProvider = new ConfigProvider();
 			builder.ConfigureAppConfiguration(config => {
 				config.Add(new ConfigSource(configProvider));
+				config.AddEnvironmentVariables(prefix: "BPMTOOL_");
 			});
 			builder.ConfigureServices(services =>
 			{
