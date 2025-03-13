@@ -76,7 +76,6 @@ public class PostgresDbLoader(
 			ArgumentList = {
 				"--no-acl",
 				"--no-owner",
-				"--verbose",
 				"-h", connectionStringBuilder.Host!.ToString(),
 				"-p", connectionStringBuilder.Port.ToString(),
 				"-U", connectionStringBuilder.Username!.ToString(),
@@ -95,7 +94,7 @@ public class PostgresDbLoader(
 
 		using var process = new Process { StartInfo = processStartInfo };
 		process.OutputDataReceived += (sender, args) => logger.LogInformation(args.Data);
-		process.ErrorDataReceived += (sender, args) => logger.LogError(args.Data);
+		process.ErrorDataReceived += (sender, args) => logger.LogInformation(args.Data);
 
 		process.Start();
 		process.BeginOutputReadLine();

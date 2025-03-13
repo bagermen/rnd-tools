@@ -72,13 +72,14 @@
     },
     "db load": {
       "commandName": "Project",
-      "commandLineArgs": "db --assembly-path C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll load C:\\Users\\roman\\www\\test\\db\\SalesFullCycle_Marketing_ServiceFull_1.6.0.101.backup",
+      "commandLineArgs": "db load C:\\Users\\roman\\www\\test\\db\\SalesFullCycle_Marketing_ServiceFull_1.6.0.101.backup",
       "environmentVariables": {
         "PGHOST": "localhost",
         "PGUSER": "postgres",
         "PGPASSWORD": "123",
         "PGPORT": "55432",
-        "DOTNET_ENVIRONMENT": "Development"
+        "DOTNET_ENVIRONMENT": "Development",
+        "BPMTOOL_CmdLine__AssemblyPath": "C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll"
       }
     },
     "auto assembly": {
@@ -86,7 +87,7 @@
       "commandLineArgs": "config setting LoadAssemblyFromByteArray",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development",
-        "BPMTOOL_CmdLine__AssemblyPath": "C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll"
+        "RNDTOOLS_CmdLine__AssemblyPath": "C:\\Users\\roman\\www\\test\\BPMSoft.WebHost.dll"
       }
     },
   }
