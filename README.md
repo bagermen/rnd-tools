@@ -25,9 +25,8 @@ dotnet run
 Use `RNDTOOLS_CmdLine__AssemblyPath` environment variable to provide `--assembly-path` option. The option takes precedence over he environment variable.
 
 ## Dependencies
-The project relies on the following NuGet packages:
-- MediatR
-- System.CommandLine.Hosting
+Project is expecting to have installed:
+- PostgreSQL Tools
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request.
