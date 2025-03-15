@@ -1,0 +1,31 @@
+mode: chatops
+branchName: short
+silent: false
+autoLinkIssue: true
+autoCloseIssue: false
+autoDeleteBranch: false
+
+openDraftPR: true
+
+conventionalPrTitles: true
+conventionalStyle: semver
+
+copyIssueLabelsToPR: true
+copyIssueAssigneeToPR: true
+copyIssueProjectsToPR: false
+
+branches:
+  - label:
+      - enhancement
+    prefix: feat/
+  - label:
+      - bug
+    prefix: fix/
+  - label:
+      - chore
+    prefix: chore/
+  - label:
+      - documentation
+    prefix: docs/
+  - label: '*'
+    skip: true

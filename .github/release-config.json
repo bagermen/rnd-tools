@@ -1,0 +1,9 @@
+{
+  "bootstrap-sha": "364084769530164cae6ec035d33ffd60eb58e539",
+  "include-v-in-tag": true,
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "draft": false,
+  "release-type": "dotnet-yoshi",
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}

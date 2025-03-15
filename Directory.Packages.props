@@ -1,5 +1,9 @@
 <Project>
   <ItemGroup>
+    <GlobalPackageReference Include="DotNet.ReproducibleBuilds" Version="1.2.25">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </GlobalPackageReference>
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="9.0.2" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Xml" Version="9.0.2" />
