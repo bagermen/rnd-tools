@@ -54,8 +54,11 @@ jobs:
 
       - run: dotnet restore --locked-mode
 
-      - name: Create the package
-        run: dotnet build --no-restore --configuration Release
+      - name: Build CmdLine
+        run: dotnet build --no-restore --configuration Release RND.Tools.CmdLine
+
+      - name: Create the CmdLine package
+        run: dotnet pack --no-restore --no-build --configuration Release RND.Tools.CmdLine
 
       - name: Publish the package to GPR
         run: dotnet nuget push artifacts/package/release/*.nupkg
