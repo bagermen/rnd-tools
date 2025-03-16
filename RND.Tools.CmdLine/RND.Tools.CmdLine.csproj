@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.0</Version>
+    <Version>1.0.3</Version>
     <Authors>bagermen</Authors>
     <Company>RND</Company>
     <Description>A command line tool for the RND Images project</Description>
@@ -22,21 +22,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" />
-    <PackageReference Include="System.CommandLine.Hosting" />
+    <PackageReference Include="MediatR"/>
+    <PackageReference Include="System.CommandLine.Hosting"/>
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\README.md" Pack="true" PackagePath="" />
+    <Content Include="..\README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RND.Tools.Core\RND.Tools.Core.csproj" />
-    <ProjectReference Include="..\RND.Tools.Infrastructure\RND.Tools.Infrastructure.csproj" />
-    <ProjectReference Include="..\RND.Tools.UseCases\RND.Tools.UseCases.csproj" />
+    <ProjectReference Include="..\RND.Tools.Core\RND.Tools.Core.csproj"/>
+    <ProjectReference Include="..\RND.Tools.Infrastructure\RND.Tools.Infrastructure.csproj"/>
+    <ProjectReference Include="..\RND.Tools.UseCases\RND.Tools.UseCases.csproj"/>
   </ItemGroup>
 
   <Choose>
