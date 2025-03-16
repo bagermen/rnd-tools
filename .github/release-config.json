@@ -1,6 +1,7 @@
 {
   "bootstrap-sha": "88c06543fd797afcf71fb084c72c25dd06093f65",
   "include-v-in-tag": true,
+  "include-component-in-tag": false,
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
   "draft": false,
