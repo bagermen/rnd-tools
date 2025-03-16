@@ -8,8 +8,15 @@
   "packages": {
     ".": {
       "component": "rnd-tools",
-      "release-type": "dotnet-yoshi",
-      "exclude-paths": [".config"]
+      "release-type": "simple",
+      "exclude-paths": [".config"],
+      "extra-files": [
+        {
+          "type": "xml",
+          "path": "RND.Tools.CmdLine/RND.Tools.CmdLine.csproj",
+          "xpath": "//Project/PropertyGroup/Version"
+        }
+      ]
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
