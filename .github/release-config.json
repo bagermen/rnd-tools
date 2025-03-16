@@ -6,7 +6,7 @@
   "draft": false,
   "packages": {
     ".": {
-      "components": "rnd-tools",
+      "component": "rnd-tools",
       "release-type": "dotnet-yoshi",
       "exclude-paths": [".config"]
     }
