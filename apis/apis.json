@@ -2,7 +2,7 @@
   "apis": [
     {
       "id": "rnd-tools",
-      "version": "v1.0.0",
+      "version": "1.0.0",
       "shortName": "rnd-tools",
       "noVersionHistory": false
     }
