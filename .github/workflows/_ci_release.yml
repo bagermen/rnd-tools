@@ -47,6 +47,7 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           cache: true
+          cache-dependency-path: RND.Tools.CmdLine/packages.lock.json
           source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

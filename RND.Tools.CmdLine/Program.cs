@@ -16,6 +16,7 @@ using RND.Tools.CmdLine.Commands.Handlers;
 using RND.Tools.Core.Extensions;
 
 /*
+(INFO)
 environment variables:
 RNDTOOLS_CmdLine__AssemblyPath
 
