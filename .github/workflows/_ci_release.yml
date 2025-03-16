@@ -8,7 +8,7 @@ on:
 jobs:
   release_please:
     runs-on: ubuntu-latest
-
+    environment: development
     permissions:
       contents: write
       pull-requests: write
@@ -30,6 +30,7 @@ jobs:
 
   build_and_push_release:
     runs-on: ubuntu-latest
+    environment: development
     needs: [release_please]
     if: ${{ !cancelled() && !failure() && needs.release_please.outputs.releases_created == 'true' }}
 
