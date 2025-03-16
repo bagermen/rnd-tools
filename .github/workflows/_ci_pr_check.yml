@@ -12,6 +12,7 @@ on:
       - '!**/docs/**'
       - '!.editorconfig'
       - '!LICENSE'
+      - 'README.md'
 
 jobs:
   test_build:
@@ -28,6 +29,7 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           cache: true
+          cache-dependency-path: RND.Tools.CmdLine/packages.lock.json
 
       - run: dotnet restore --locked-mode
       - name: Create the package
