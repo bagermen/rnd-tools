@@ -4,6 +4,11 @@
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
   "draft": false,
-  "release-type": "dotnet-yoshi",
+  "packages": {
+    ".": {
+      "release-type": "dotnet-yoshi",
+      "exclude-paths": [".config"]
+    }
+  },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
 }
