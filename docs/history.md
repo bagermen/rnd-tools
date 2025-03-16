@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.0.1, released 2025-03-16
+
+
+### Bug fixes
+
+* :green_heart: fix CI build ([22a3153](https://github.com/bagermen/rnd-tools/commit/22a31538ee53433ff8306476bbdbc75335a98b68))
+
 ## Version 1.0.0, released 2025-03-16
 
 
