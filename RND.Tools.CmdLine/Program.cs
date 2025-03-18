@@ -44,8 +44,8 @@ await commandBuilder
 		{
 			var configProvider = new ConfigProvider();
 			builder.ConfigureAppConfiguration(config => {
-				config.Add(new ConfigSource(configProvider));
 				config.AddEnvironmentVariables(prefix: "RNDTOOLS_");
+				config.Add(new ConfigSource(configProvider));
 			});
 			builder.ConfigureServices(services =>
 			{
